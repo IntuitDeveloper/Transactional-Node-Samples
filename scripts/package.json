@@ -1,0 +1,19 @@
+{
+  "name": "mandrill-use-cases",
+  "version": "1.0.0",
+  "description": "Ready-to-run Node.js scripts demonstrating Mandrill API use cases and features",
+  "main": "email_with_single_recipient.js",
+  "scripts": {
+    "test": "echo 'Run individual scripts with: node <script-name>.js'"
+  },
+  "keywords": ["mandrill", "email", "mailchimp", "transactional", "use-cases", "examples", "templates", "attachments", "merge-tags"],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@mailchimp/mailchimp_transactional": "^1.0.59",
+    "dotenv": "^16.3.1"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

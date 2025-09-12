@@ -1,0 +1,111 @@
+require('dotenv').config();
+const mailchimp = require('@mailchimp/mailchimp_transactional')(process.env.MANDRILL_API_KEY);
+
+// Simple attachments
+const fs = require('fs');
+const path = require('path');
+
+const attachments = [
+  {
+    type: 'application/pdf',
+    name: 'sample.pdf',
+    content: fs.readFileSync(path.resolve(__dirname, 'sample.pdf')).toString('base64')
+  }
+];
+
+// Inline images (empty for this demo)
+const images = [];
+
+// Complete Mandrill message with ALL features
+const message = {
+  // Basic content
+  html: `
+    <h1>Hello {{fname}}!</h1>
+    <p>This email demonstrates multiple Transactional API features.</p>
+    <p>Company: {{company_name}}</p>
+    <p>Account: {{account_id}}</p>
+    <div style="width: 50px; height: 50px; background: #007bff; border: 2px solid #0056b3; display: inline-block;"></div>
+  `,
+  text: `Hello {{fname}}!\n\nThis email demonstrates multiple Transactional API features.\nCompany: {{company_name}}\nAccount: {{account_id}}`,
+  
+  // Basic fields
+  subject: 'Hello {{fname}} - Mandrill Features Demo',
+  from_email: process.env.DEFAULT_FROM_EMAIL || 'test@example.org',
+  from_name: process.env.DEFAULT_FROM_NAME || 'Test Sender',
+  
+  // All recipient types
+  to: [
+    { email: process.env.DEFAULT_TO_EMAIL || 'recipient@example.org', name: process.env.DEFAULT_TO_NAME || 'Test Recipient', type: 'to' }
+  ],
+  cc: [
+    // { email: 'cc@example.com', name: 'CC User', type: 'cc' }
+  ],
+  bcc: [
+    // { email: 'bcc@example.com', name: 'BCC User', type: 'bcc' }
+  ],
+  
+  // Headers
+  headers: {
+    'Reply-To': process.env.DEFAULT_FROM_EMAIL || 'test@example.org',
+    'X-Custom-Header': 'Mandrill-Demo'
+  },
+  
+  // Merge variables
+  global_merge_vars: [
+    { name: 'company_name', content: 'Intuit Developer Program' }
+  ],
+  merge_vars: [
+    {
+      rcpt: process.env.DEFAULT_TO_EMAIL || 'recipient@example.org',
+      vars: [
+        { name: 'fname', content: 'John' },
+        { name: 'account_id', content: 'ACC-001' }
+      ]
+    }
+  ],
+  merge_language: 'handlebars',
+  
+  // Attachments and images
+  attachments: attachments,
+  images: images,
+  
+  // Tracking
+  track_opens: true,
+  track_clicks: true,
+  auto_text: true,
+  auto_html: false,
+  inline_css: true,
+  
+  // Tags and metadata
+  tags: ['demo', 'kitchen-sink', 'features'],
+  metadata: {
+    campaign: 'mandrill-demo',
+    version: '1.0'
+  },
+  
+  // Advanced options
+  important: true,
+  view_content_link: true,
+  preserve_recipients: false,
+  async: false
+};
+
+async function sendKitchenSink() {
+  try {
+    const result = await mailchimp.messages.send({ message });
+    
+    if (Array.isArray(result)) {
+      result.forEach(r => {
+        console.log(`${r.email}: ${r.status}`);
+      });
+    }
+    
+  } catch (error) {
+    console.error('Error:', error.message);
+    if (error.response) {
+      console.error('API Details:', error.response.data);
+    }
+  }
+}
+
+sendKitchenSink();
