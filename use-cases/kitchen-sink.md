@@ -5,140 +5,113 @@ This use case demonstrates a comprehensive Mailchimp Transactional (Mandrill) me
 ## Comprehensive Example
 
 ```javascript
-const fs = require('fs');
-const path = require('path');
+require('dotenv').config();
 const mailchimp = require('@mailchimp/mailchimp_transactional')(process.env.MANDRILL_API_KEY);
 
-function readBase64(p) {
-  return fs.readFileSync(p).toString('base64');
-}
+// Simple attachments
+const fs = require('fs');
+const path = require('path');
+
+const attachments = [
+  {
+    type: 'application/pdf',
+    name: 'sample.pdf',
+    content: fs.readFileSync(path.resolve(__dirname, 'sample.pdf')).toString('base64')
+  }
+];
+
+// Inline images (empty for this demo)
+const images = [];
+
+// Complete Mandrill message with ALL features
+const message = {
+  // Basic content
+  html: `
+    <h1>Hello {{fname}}!</h1>
+    <p>This email demonstrates multiple Transactional API features.</p>
+    <p>Company: {{company_name}}</p>
+    <p>Account: {{account_id}}</p>
+    <div style="width: 50px; height: 50px; background: #007bff; border: 2px solid #0056b3; display: inline-block;"></div>
+  `,
+  text: `Hello {{fname}}!\n\nThis email demonstrates multiple Transactional API features.\nCompany: {{company_name}}\nAccount: {{account_id}}`,
+  
+  // Basic fields
+  subject: 'Hello {{fname}} - Mandrill Features Demo',
+  from_email: process.env.DEFAULT_FROM_EMAIL || 'test@example.org',
+  from_name: process.env.DEFAULT_FROM_NAME || 'Test Sender',
+  
+  // All recipient types
+  to: [
+    { email: process.env.DEFAULT_TO_EMAIL || 'recipient@example.org', name: process.env.DEFAULT_TO_NAME || 'Test Recipient', type: 'to' }
+  ],
+  cc: [
+    // { email: 'cc@example.com', name: 'CC User', type: 'cc' }
+  ],
+  bcc: [
+    // { email: 'bcc@example.com', name: 'BCC User', type: 'bcc' }
+  ],
+  
+  // Headers
+  headers: {
+    'Reply-To': process.env.DEFAULT_FROM_EMAIL || 'test@example.org',
+    'X-Custom-Header': 'Mandrill-Demo'
+  },
+  
+  // Merge variables
+  global_merge_vars: [
+    { name: 'company_name', content: 'Intuit Developer Program' }
+  ],
+  merge_vars: [
+    {
+      rcpt: process.env.DEFAULT_TO_EMAIL || 'recipient@example.org',
+      vars: [
+        { name: 'fname', content: 'John' },
+        { name: 'account_id', content: 'ACC-001' }
+      ]
+    }
+  ],
+  merge_language: 'handlebars',
+  
+  // Attachments and images
+  attachments: attachments,
+  images: images,
+  
+  // Tracking
+  track_opens: true,
+  track_clicks: true,
+  auto_text: true,
+  auto_html: false,
+  inline_css: true,
+  
+  // Tags and metadata
+  tags: ['demo', 'kitchen-sink', 'features'],
+  metadata: {
+    campaign: 'mandrill-demo',
+    version: '1.0'
+  },
+  
+  // Advanced options
+  important: true,
+  view_content_link: true,
+  preserve_recipients: false,
+  async: false
+};
 
 async function sendKitchenSink() {
-  const message = {
-    // Core content
-    html: `
-      <h1>Kitchen Sink</h1>
-      <p>Hello {{FNAME}} {{LNAME}},</p>
-      <p>Welcome to {{company_name}}. Your order <strong>{{ORDERID}}</strong> is confirmed.</p>
-      <p><img src="cid:company-logo" alt="Logo" style="max-width:160px"/></p>
-      <p>Inline image above, attachments included.</p>
-    `,
-    text: 'Hello {{FNAME}} {{LNAME}}, your order {{ORDERID}} is confirmed.',
-    subject: 'Order {{ORDERID}} Confirmation - {{company_name}}',
-
-    // From
-    from_email: 'no-reply@example.org',
-    from_name: 'Example Inc.',
-
-    // Recipients (to/cc/bcc)
-    to: [
-      { email: 'primary@example.org', name: 'Primary Recipient', type: 'to' },
-      { email: 'copy1@example.org', name: 'Copy One', type: 'cc' },
-      { email: 'copy2@example.org', name: 'Copy Two', type: 'cc' },
-      { email: 'hidden@example.org', name: 'Hidden Recipient', type: 'bcc' }
-    ],
-
-    // Headers
-    headers: {
-      'Reply-To': 'support@example.org',
-      'X-Custom-Header': 'custom-value'
-    },
-
-    // Tracking & options
-    important: false,
-    track_opens: true,
-    track_clicks: true,
-    auto_text: true,
-    auto_html: false,
-    inline_css: true,
-    url_strip_qs: false,
-    preserve_recipients: false,
-    view_content_link: null,
-    subaccount: null,
-
-    // Merge data (global + per recipient)
-    global_merge_vars: [
-      { name: 'company_name', content: 'Example Inc.' }
-    ],
-    merge_vars: [
-      {
-        rcpt: 'primary@example.org',
-        vars: [
-          { name: 'FNAME', content: 'Alex' },
-          { name: 'LNAME', content: 'Smith' },
-          { name: 'ORDERID', content: 'A-1001' }
-        ]
-      },
-      {
-        rcpt: 'copy1@example.org',
-        vars: [
-          { name: 'FNAME', content: 'Casey' },
-          { name: 'LNAME', content: 'Lee' },
-          { name: 'ORDERID', content: 'A-1001' }
-        ]
-      }
-    ],
-    merge_language: 'handlebars',
-
-    // Attachments (downloadable) and inline images
-    attachments: [
-      {
-        type: 'application/pdf',
-        name: 'invoice.pdf',
-        content: readBase64(path.resolve(__dirname, '../fixtures/invoice.pdf'))
-      },
-      {
-        type: 'text/plain',
-        name: 'notes.txt',
-        content: Buffer.from('Order notes for A-1001').toString('base64')
-      }
-    ],
-    images: [
-      {
-        type: 'image/png',
-        name: 'company-logo', // referenced as cid:company-logo
-        content: readBase64(path.resolve(__dirname, '../fixtures/logo.png'))
-      }
-    ],
-
-    // Metadata and tags
-    metadata: {
-      order_id: 'A-1001',
-      customer_id: 'C-500'
-    },
-    tags: ['kitchen-sink', 'orders', 'transactional'],
-
-    // IP pool & scheduling
-    ip_pool: undefined, // e.g., 'transactional-pool'
-    send_at: null // e.g., new Date(Date.now() + 3600_000).toISOString()
-  };
-
-  // Optional: Use a stored template instead of inline HTML
-  const useTemplate = false;
-  const templateName = 'order-confirmation-template';
-  const templateContent = [
-    // For Mailchimp merge language mc:edit regions only
-    // { name: 'main', content: '<p>Custom main area</p>' }
-  ];
-
   try {
-    let result;
-    if (useTemplate) {
-      result = await mailchimp.messages.sendTemplate({
-        template_name: templateName,
-        template_content: templateContent,
-        message
+    const result = await mailchimp.messages.send({ message });
+    
+    if (Array.isArray(result)) {
+      result.forEach(r => {
+        console.log(`${r.email}: ${r.status}`);
       });
-    } else {
-      result = await mailchimp.messages.send({ message });
     }
-
-    console.log('Kitchen Sink send results:');
-    result.forEach(r => {
-      console.log(`${r.email}: ${r.status}${r.reject_reason ? ` (${r.reject_reason})` : ''}`);
-    });
+    
   } catch (error) {
-    console.error('Mandrill error:', error.message);
+    console.error('Error:', error.message);
+    if (error.response) {
+      console.error('API Details:', error.response.data);
+    }
   }
 }
 

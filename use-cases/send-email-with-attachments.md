@@ -27,7 +27,7 @@ const attachments = [
   {
     type: 'text/plain',
     name: 'readme.txt',
-    content: Buffer.from('Hello from Mandrill attachments\n\nThis is a demo text file created by the Mandrill Test App.\n\nGenerated at: ' + new Date().toISOString()).toString('base64')
+    content: Buffer.from('This is a demo text file created by the Mandrill Use Case File.\n\nGenerated at: ' + new Date().toISOString()).toString('base64')
   }
 ];
 
@@ -38,10 +38,10 @@ const message = {
   `,
   text: `Your documents are attached.`,
   subject: 'Documents Attached',
-  from_email: 'brad_hudson@intuit.com',
-  from_name: 'Brad Hudson',
+  from_email: process.env.DEFAULT_FROM_EMAIL || 'test@example.org',
+  from_name: process.env.DEFAULT_FROM_NAME || 'Test Sender',
   to: [
-    { email: 'brad_hudson@intuit.com', name: 'Brad hudson', type: 'to' }
+    { email: process.env.DEFAULT_TO_EMAIL || 'recipient@example.org', name: process.env.DEFAULT_TO_NAME || 'Test Recipient', type: 'to' }
   ],
   attachments: attachments, // Array of attachments
   tags: ['attachments', 'outbound-documents']

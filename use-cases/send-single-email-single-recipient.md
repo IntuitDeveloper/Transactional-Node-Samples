@@ -14,15 +14,15 @@ const message = {
   html: '<p>Hello HTML world!</p>',
   text: 'Hello plain world!',
   subject: 'Hello world',
-  from_email: 'brad_hudson@intuit.com',
-  from_name: 'Brad Hudson',
+  from_email: process.env.DEFAULT_FROM_EMAIL || 'test@example.org',
+  from_name: process.env.DEFAULT_FROM_NAME || 'Test Sender',
   to: [{
-    email: 'brad_hudson@intuit.com',
-    name: 'Brad Hudson',
+    email: process.env.DEFAULT_TO_EMAIL || 'recipient@example.org',
+    name: process.env.DEFAULT_TO_NAME || 'Test Recipient',
     type: 'to'
   }],
   headers: {
-    'Reply-To': 'brad_hudson@intuit.com'
+    'Reply-To': process.env.DEFAULT_FROM_EMAIL || 'test@example.org'
   }
 };
 

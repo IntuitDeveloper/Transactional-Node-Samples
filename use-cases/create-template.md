@@ -9,12 +9,14 @@ const mailchimp = require('@mailchimp/mailchimp_transactional')(process.env.MAND
 async function createTemplate() {
   const templateData = {
     name: 'hello-template',
-    from_email: 'brad_hudson@intuit.com',
-    from_name: 'Brad Hudson',
+    from_email: process.env.DEFAULT_FROM_EMAIL || 'test@example.org',
+    from_name: process.env.DEFAULT_FROM_NAME || 'Test Sender',
     subject: 'Hello {{fname}}!',
     code: `
       <h1>Hello {{fname}}!</h1>
-      <p>Welcome to {{company_name}}.</p>
+      <div mc:edit="welcome_message">
+        <p>Welcome to {{company_name}}.</p>
+      </div>
       <p>Your account: {{account_id}}</p>
     `,
     text: `Hello {{fname}}!\n\nWelcome to {{company_name}}.\nYour account: {{account_id}}`,

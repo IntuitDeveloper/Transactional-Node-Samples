@@ -14,7 +14,7 @@ const message = {
   html: `
     <h1>Welcome {{fname}}!</h1>
     <p>Hi {{fname}} {{lname}},</p>
-    <p>Thanks for joining {{company_name}}! Your account is now active.</p>
+    <p>Thanks for joining the {{company_name}}! Your account is now active.</p>
     <p>Your membership level: {{membership_level}}</p>
     <p>Best regards,<br>The {{company_name}} Team</p>
   `,
@@ -23,22 +23,22 @@ const message = {
     
     Hi {{fname}} {{lname}},
     
-    Thanks for joining {{company_name}}! Your account is now active.
+    Thanks for joining the {{company_name}}! Your account is now active.
     Your membership level: {{membership_level}}
     
     Best regards,
     The {{company_name}} Team
   `,
   subject: 'Welcome to {{company_name}}, {{fname}}!',
-  from_email: 'brad_hudson@intuit.com',
-  from_name: 'Brad Hudson',
+  from_email: process.env.DEFAULT_FROM_EMAIL || 'test@example.org',
+  from_name: process.env.DEFAULT_FROM_NAME || 'Test Sender',
   to: [{
-    email: 'brad_hudson@intuit.com',
-    name: 'Brad Hudson',
+    email: process.env.DEFAULT_TO_EMAIL || 'recipient@example.org',
+    name: process.env.DEFAULT_TO_NAME || 'Test Recipient',
     type: 'to'
   }],
   headers: {
-    'Reply-To': 'brad_hudson@intuit.com'
+    'Reply-To': process.env.DEFAULT_FROM_EMAIL || 'test@example.org'
   },
   // Global merge variables (apply to all recipients)
   global_merge_vars: [
@@ -54,7 +54,7 @@ const message = {
   // Recipient-specific merge variables
   merge_vars: [
     {
-      rcpt: 'john@example.org',
+      rcpt: process.env.DEFAULT_TO_EMAIL || 'recipient@example.org',
       vars: [
         {
           name: 'fname',
@@ -63,23 +63,6 @@ const message = {
         {
           name: 'lname', 
           content: 'Smith'
-        }
-      ]
-    },
-    {
-      rcpt: 'jane@example.org',
-      vars: [
-        {
-          name: 'fname',
-          content: 'Jane'
-        },
-        {
-          name: 'lname',
-          content: 'Doe'
-        },
-        {
-          name: 'membership_level',
-          content: 'Enterprise' // Overrides global value
         }
       ]
     }

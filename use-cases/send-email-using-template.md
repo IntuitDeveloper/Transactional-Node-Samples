@@ -5,34 +5,41 @@ Send an email using a stored template with `messages.sendTemplate`. Provide the 
 ## Basic Example
 
 ```javascript
+require('dotenv').config();
 const mailchimp = require('@mailchimp/mailchimp_transactional')(process.env.MANDRILL_API_KEY);
 
 async function sendWithTemplate() {
-  const templateName = 'welcome-template-v2';
+  const templateName = 'hello-template';
 
   const message = {
-    from_email: 'no-reply@example.org',
-    from_name: 'Example Inc.',
+    from_email: process.env.DEFAULT_FROM_EMAIL || 'test@example.org',
+    from_name: process.env.DEFAULT_FROM_NAME || 'Test Sender',
     subject: 'Welcome, {{fname}}', // Can be overridden even if template has a default
     to: [
-      { email: 'john@example.org', name: 'John Smith', type: 'to' },
-      { email: 'jane@example.org', name: 'Jane Doe', type: 'to' }
+      { email: process.env.DEFAULT_TO_EMAIL || 'recipient@example.org', name: process.env.DEFAULT_TO_NAME || 'Test Recipient', type: 'to' }
     ],
     global_merge_vars: [
-      { name: 'company_name', content: 'Example Inc.' }
+      { name: 'company_name', content: 'Intuit Developer Program' }
     ],
     merge_vars: [
-      { rcpt: 'john@example.org', vars: [ { name: 'fname', content: 'John' } ] },
-      { rcpt: 'jane@example.org', vars: [ { name: 'fname', content: 'Jane' } ] }
+      { 
+        rcpt: process.env.DEFAULT_TO_EMAIL || 'recipient@example.org', 
+        vars: [
+          { name: 'fname', content: 'John' },
+          { name: 'account_id', content: 'ACC-001' }
+        ] 
+      }
     ],
     merge_language: 'handlebars',
     tags: ['onboarding', 'welcome']
   };
 
-  // Optional: replace mc:edit regions in template (Mailchimp merge language only)
+  // Replace mc:edit regions in template (works with both Handlebars and Mailchimp)
   const templateContent = [
-    // { name: 'header', content: '<h2>Welcome Header</h2>' },
-    // { name: 'main', content: 'Thanks for joining us.' }
+    { 
+      name: 'welcome_message', 
+      content: '<p>Thanks for joining <strong>{{company_name}}</strong>! We\'re excited to have you on board.</p>' 
+    }
   ];
 
   try {
@@ -43,9 +50,16 @@ async function sendWithTemplate() {
     });
 
     console.log('Template-based emails sent:');
-    result.forEach(r => console.log(`${r.email}: ${r.status}`));
+    if (Array.isArray(result)) {
+      result.forEach(r => console.log(`   ${r.email}: ${r.status}`));
+    } else {
+      console.log('Unexpected result structure:', result);
+    }
   } catch (error) {
     console.error('Mandrill error:', error.message);
+    if (error.response) {
+      console.error('API Details:', error.response.data);
+    }
   }
 }
 

@@ -1,5 +1,4 @@
 require('dotenv').config();
-console.log('API Key loaded:', process.env.MANDRILL_API_KEY ? 'Yes' : 'No');
 const mailchimp = require('@mailchimp/mailchimp_transactional')(process.env.MANDRILL_API_KEY);
 
 async function sendWithTemplate() {
