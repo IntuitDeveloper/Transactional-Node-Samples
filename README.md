@@ -30,8 +30,8 @@ If you need support using Mandrill, please check the [Mandrill API Documentation
 
 1. **Clone this repository**
    ```bash
-   git clone https://github.com/your-username/mandrill-use-cases.git
-   cd mandrill-use-cases
+   git clone git@github.com:IntuitDeveloper/Transactional-Node-Samples.git
+   cd Transactional-Node-Samples
    ```
 
 2. **Install dependencies in the scripts folder:**
