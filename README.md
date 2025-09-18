@@ -11,7 +11,7 @@ This repository provides examples for specific Mandrill API use cases using Node
 
 All examples are available as documentation in the `/use-cases/` directory. Each use case includes complete code examples you can copy and run.
 
-If you need support using Mandrill, please check the [Mandrill API Documentation](https://docs.mailchimp.com/api/mandrill/).
+If you need support using Mandrill, please check the [Mandrill API Documentation](https://mailchimp.com/developer/transactional/).
 
 ## Table of Contents
 
@@ -24,6 +24,7 @@ If you need support using Mandrill, please check the [Mandrill API Documentation
 
 ### Prerequisites
 
+- Node >= 10.0.0
 - A Mandrill API key
 
 ### Installation
