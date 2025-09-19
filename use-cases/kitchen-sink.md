@@ -6,7 +6,7 @@ This use case demonstrates a comprehensive Transactional API message exercising 
 
 ```javascript
 require('dotenv').config();
-const mailchimp = require('@mailchimp/mailchimp_transactional')(process.env.MANDRILL_API_KEY);
+const mailchimp = require('@mailchimp/mailchimp_transactional')(process.env.TRANSACTIONAL_API_KEY);
 
 // Simple attachments
 const fs = require('fs');
@@ -86,7 +86,7 @@ const message = {
   // Tags and metadata
   tags: ['demo', 'kitchen-sink', 'features'],
   metadata: {
-    campaign: 'mandrill-demo',
+    campaign: 'transactional-demo',
     version: '1.0'
   },
   

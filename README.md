@@ -1,7 +1,7 @@
 # Transactional API Node.js Use Cases
 
 [![npm version](https://img.shields.io/npm/v/@mailchimp/mailchimp_transactional.svg)](https://www.npmjs.com/package/@mailchimp/mailchimp_transactional)
-[![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/example/mandrill-use-cases/blob/master/LICENSE)
+[![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/example/transactional-api-use-cases/blob/master/LICENSE)
 
 **Comprehensive Node.js examples for the Transactional API**
 
@@ -43,7 +43,7 @@ If you need support using the Transactional API, please check the [Transactional
 
 3. **Add your API key and email addresses to your .env file**
    ```bash
-   MANDRILL_API_KEY='your-transactional-api-key-here'
+   TRANSACTIONAL_API_KEY='your-transactional-api-key-here'
    DEFAULT_FROM_EMAIL='your-email@example.com'
    DEFAULT_FROM_NAME='Your Name'
    DEFAULT_TO_EMAIL='recipient@example.com'

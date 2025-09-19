@@ -1,7 +1,7 @@
 require('dotenv').config();
 const fs = require('fs');
 const path = require('path');
-const mailchimp = require('@mailchimp/mailchimp_transactional')(process.env.MANDRILL_API_KEY);
+const mailchimp = require('@mailchimp/mailchimp_transactional')(process.env.TRANSACTIONAL_API_KEY);
 
 // Helper to read a local file and return a Base64 string
 function readFileAsBase64(filePath) {
@@ -18,7 +18,7 @@ const attachments = [
   {
     type: 'text/plain',
     name: 'readme.txt',
-    content: Buffer.from('This is a demo text file created by the Mandrill Use Case File.\n\nGenerated at: ' + new Date().toISOString()).toString('base64')
+    content: Buffer.from('This is a demo text file created by the Transactional API Use Case File.\n\nGenerated at: ' + new Date().toISOString()).toString('base64')
   }
 ];
 
@@ -50,7 +50,7 @@ async function sendWithAttachments() {
       console.log('Unexpected result structure:', result);
     }
   } catch (error) {
-    console.error('Mandrill error:', error.message);
+    console.error('Transactional API error:', error.message);
     if (error.response) {
       console.error('Error response:', error.response.data);
     }

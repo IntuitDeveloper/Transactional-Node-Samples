@@ -1,5 +1,5 @@
 require('dotenv').config();
-const mailchimp = require('@mailchimp/mailchimp_transactional')(process.env.MANDRILL_API_KEY);
+const mailchimp = require('@mailchimp/mailchimp_transactional')(process.env.TRANSACTIONAL_API_KEY);
 
 const message = {
   html: `
@@ -75,7 +75,7 @@ async function sendPersonalizedEmail() {
       console.log('Unexpected result structure:', result);
     }
   } catch (error) {
-    console.error('Mandrill error:', error.message);
+    console.error('Transactional API error:', error.message);
     if (error.response) {
       // console.error('Error response:', error.response.data);
     }

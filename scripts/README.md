@@ -13,7 +13,7 @@ Ready-to-run Node.js scripts demonstrating all Transactional API features.
 2. **Set up environment:**
    ```bash
    cp env.example .env
-   # Edit .env and add your MANDRILL_API_KEY and email addresses
+   # Edit .env and add your TRANSACTIONAL_API_KEY and email addresses
    ```
 
 3. **Run any script:**
@@ -47,7 +47,7 @@ Ready-to-run Node.js scripts demonstrating all Transactional API features.
 Create a `.env` file with:
 
 ```env
-MANDRILL_API_KEY=your_transactional_api_key_here
+TRANSACTIONAL_API_KEY=your_transactional_api_key_here
 DEFAULT_FROM_EMAIL=test@example.org
 DEFAULT_FROM_NAME=Test Sender
 DEFAULT_TO_EMAIL=recipient@example.org

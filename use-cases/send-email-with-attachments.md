@@ -10,7 +10,7 @@ Attach one or more files by providing Base64-encoded content. The total message 
 require('dotenv').config();
 const fs = require('fs');
 const path = require('path');
-const mailchimp = require('@mailchimp/mailchimp_transactional')(process.env.MANDRILL_API_KEY);
+const mailchimp = require('@mailchimp/mailchimp_transactional')(process.env.TRANSACTIONAL_API_KEY);
 
 // Helper to read a local file and return a Base64 string
 function readFileAsBase64(filePath) {
@@ -74,7 +74,7 @@ sendWithAttachments();
 If you already have a Buffer, convert it to Base64. For streams (e.g., reading large files), buffer the content before sending.
 
 ```javascript
-const mailchimp = require('@mailchimp/mailchimp_transactional')(process.env.MANDRILL_API_KEY);
+const mailchimp = require('@mailchimp/mailchimp_transactional')(process.env.TRANSACTIONAL_API_KEY);
 
 function bufferToBase64(buffer) {
   return buffer.toString('base64');

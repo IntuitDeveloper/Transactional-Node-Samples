@@ -4,7 +4,7 @@ Create a reusable email template in the Transactional API.
 
 ```javascript
 require('dotenv').config();
-const mailchimp = require('@mailchimp/mailchimp_transactional')(process.env.MANDRILL_API_KEY);
+const mailchimp = require('@mailchimp/mailchimp_transactional')(process.env.TRANSACTIONAL_API_KEY);
 
 async function createTemplate() {
   const templateData = {

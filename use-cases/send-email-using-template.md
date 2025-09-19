@@ -6,7 +6,7 @@ Send an email using a stored template with `messages.sendTemplate` in the Transa
 
 ```javascript
 require('dotenv').config();
-const mailchimp = require('@mailchimp/mailchimp_transactional')(process.env.MANDRILL_API_KEY);
+const mailchimp = require('@mailchimp/mailchimp_transactional')(process.env.TRANSACTIONAL_API_KEY);
 
 async function sendWithTemplate() {
   const templateName = 'hello-template';

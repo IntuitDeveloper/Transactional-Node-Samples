@@ -20,7 +20,7 @@ Essential Node.js examples for the Transactional API. Each use case includes com
 
 ```javascript
 require('dotenv').config();
-const mailchimp = require('@mailchimp/mailchimp_transactional')(process.env.MANDRILL_API_KEY);
+const mailchimp = require('@mailchimp/mailchimp_transactional')(process.env.TRANSACTIONAL_API_KEY);
 
 const message = {
   html: '<p>Hello world!</p>',

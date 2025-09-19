@@ -1,5 +1,5 @@
 require('dotenv').config();
-const mailchimp = require('@mailchimp/mailchimp_transactional')(process.env.MANDRILL_API_KEY);
+const mailchimp = require('@mailchimp/mailchimp_transactional')(process.env.TRANSACTIONAL_API_KEY);
 
 // Simple attachments
 const fs = require('fs');
@@ -16,7 +16,7 @@ const attachments = [
 // Inline images (empty for this demo)
 const images = [];
 
-// Complete Mandrill message with ALL features
+// Complete Transactional API message with ALL features
 const message = {
   // Basic content
   html: `
@@ -29,7 +29,7 @@ const message = {
   text: `Hello {{fname}}!\n\nThis email demonstrates multiple Transactional API features.\nCompany: {{company_name}}\nAccount: {{account_id}}`,
   
   // Basic fields
-  subject: 'Hello {{fname}} - Mandrill Features Demo',
+  subject: 'Hello {{fname}} - Transactional API Features Demo',
   from_email: process.env.DEFAULT_FROM_EMAIL || 'test@example.org',
   from_name: process.env.DEFAULT_FROM_NAME || 'Test Sender',
   
@@ -47,7 +47,7 @@ const message = {
   // Headers
   headers: {
     'Reply-To': process.env.DEFAULT_FROM_EMAIL || 'test@example.org',
-    'X-Custom-Header': 'Mandrill-Demo'
+    'X-Custom-Header': 'Transactional-API-Demo'
   },
   
   // Merge variables
@@ -79,7 +79,7 @@ const message = {
   // Tags and metadata
   tags: ['demo', 'kitchen-sink', 'features'],
   metadata: {
-    campaign: 'mandrill-demo',
+    campaign: 'transactional-api-demo',
     version: '1.0'
   },
   

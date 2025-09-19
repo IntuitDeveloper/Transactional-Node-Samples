@@ -8,7 +8,7 @@ Use merge tags to personalize content for each recipient:
 
 ```javascript
 require('dotenv').config();
-const mailchimp = require('@mailchimp/mailchimp_transactional')(process.env.MANDRILL_API_KEY);
+const mailchimp = require('@mailchimp/mailchimp_transactional')(process.env.TRANSACTIONAL_API_KEY);
 
 const message = {
   html: `

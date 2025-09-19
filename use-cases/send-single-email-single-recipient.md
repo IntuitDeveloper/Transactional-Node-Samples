@@ -8,7 +8,7 @@ Here's how to send a single email to a single recipient using the Transactional 
 
 ```javascript
 require('dotenv').config();
-const mailchimp = require('@mailchimp/mailchimp_transactional')(process.env.MANDRILL_API_KEY);
+const mailchimp = require('@mailchimp/mailchimp_transactional')(process.env.TRANSACTIONAL_API_KEY);
 
 const message = {
   html: '<p>Hello HTML world!</p>',
