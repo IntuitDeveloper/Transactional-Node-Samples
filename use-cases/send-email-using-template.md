@@ -1,6 +1,6 @@
 # Send Email Using Stored Template
 
-Send an email using a stored template with `messages.sendTemplate`. Provide the template name, optional `template_content` (for mc:edit regions), and a standard `message` with recipients and merge data.
+Send an email using a stored template with `messages.sendTemplate` in the Transactional API. Provide the template name, optional `template_content` (for mc:edit regions), and a standard `message` with recipients and merge data.
 
 ## Basic Example
 
@@ -56,7 +56,7 @@ async function sendWithTemplate() {
       console.log('Unexpected result structure:', result);
     }
   } catch (error) {
-    console.error('Mandrill error:', error.message);
+    console.error('Transactional API error:', error.message);
     if (error.response) {
       console.error('API Details:', error.response.data);
     }

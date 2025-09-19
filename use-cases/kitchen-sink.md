@@ -1,6 +1,6 @@
 # Kitchen Sink - Example with Broad Settings
 
-This use case demonstrates a comprehensive Mailchimp Transactional (Mandrill) message exercising many available settings in one example.
+This use case demonstrates a comprehensive Transactional API message exercising many available settings in one example.
 
 ## Comprehensive Example
 
@@ -23,7 +23,7 @@ const attachments = [
 // Inline images (empty for this demo)
 const images = [];
 
-// Complete Mandrill message with ALL features
+// Complete Transactional API message with ALL features
 const message = {
   // Basic content
   html: `
@@ -36,7 +36,7 @@ const message = {
   text: `Hello {{fname}}!\n\nThis email demonstrates multiple Transactional API features.\nCompany: {{company_name}}\nAccount: {{account_id}}`,
   
   // Basic fields
-  subject: 'Hello {{fname}} - Mandrill Features Demo',
+  subject: 'Hello {{fname}} - Transactional API Features Demo',
   from_email: process.env.DEFAULT_FROM_EMAIL || 'test@example.org',
   from_name: process.env.DEFAULT_FROM_NAME || 'Test Sender',
   
@@ -54,7 +54,7 @@ const message = {
   // Headers
   headers: {
     'Reply-To': process.env.DEFAULT_FROM_EMAIL || 'test@example.org',
-    'X-Custom-Header': 'Mandrill-Demo'
+    'X-Custom-Header': 'Transactional-API-Demo'
   },
   
   // Merge variables

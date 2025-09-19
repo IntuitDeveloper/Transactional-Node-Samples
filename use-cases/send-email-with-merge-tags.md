@@ -1,6 +1,6 @@
 # Send Email with Merge Tags (Dynamic Content)
 
-This use case demonstrates how to personalize emails using merge tags for dynamic content like names, order information, and custom data.
+This use case demonstrates how to personalize emails using merge tags for dynamic content like names, order information, and custom data with the Transactional API.
 
 ## Basic Merge Tags Example
 
@@ -84,7 +84,7 @@ async function sendPersonalizedEmail() {
       console.log('Unexpected result structure:', result);
     }
   } catch (error) {
-    console.error('Mandrill error:', error.message);
+    console.error('Transactional API error:', error.message);
     if (error.response) {
       // console.error('Error response:', error.response.data);
     }

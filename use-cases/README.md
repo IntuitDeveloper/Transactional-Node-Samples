@@ -1,6 +1,6 @@
-# Mandrill Use Cases
+# Transactional API Use Cases
 
-Essential Node.js examples for the Mandrill API. Each use case includes complete, copy-paste code examples.
+Essential Node.js examples for the Transactional API. Each use case includes complete, copy-paste code examples.
 
 ## 📧 Basic Email Sending
 
@@ -40,7 +40,7 @@ async function sendEmail() {
     const result = await mailchimp.messages.send({ message });
     console.log('Email sent:', result[0].status);
   } catch (error) {
-    console.error('Mandrill error:', error.message);
+    console.error('Transactional API error:', error.message);
   }
 }
 

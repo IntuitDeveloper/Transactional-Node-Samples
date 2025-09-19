@@ -1,10 +1,10 @@
 # Send a Single Email to a Single Recipient
 
-This use case demonstrates how to send a single email to a single recipient using the Mandrill API.
+This use case demonstrates how to send a single email to a single recipient using the Transactional API.
 
 ## Basic Example
 
-Here's how to send a single email to a single recipient using the Mandrill API:
+Here's how to send a single email to a single recipient using the Transactional API:
 
 ```javascript
 require('dotenv').config();
@@ -42,7 +42,7 @@ async function sendEmail() {
       console.log('Unexpected result structure:', result);
     }
   } catch (error) {
-    console.log(`Mandrill error: ${error.name} - ${error.message}`);
+    console.log(`Transactional API error: ${error.name} - ${error.message}`);
     if (error.response) {
       console.log('Error response:', error.response.data);
     }
@@ -54,7 +54,7 @@ sendEmail();
 
 ## API Features
 
-| Feature | Mandrill Implementation |
+| Feature | Transactional API Implementation |
 |---------|-------------------------|
 | **Recipients** | `to: [{email: 'email@example.org', name: 'Name', type: 'to'}]` |
 | **Sender** | `from_email: 'email@example.org', from_name: 'Name'` |
@@ -62,7 +62,7 @@ sendEmail();
 
 ## Message Structure
 
-The Mandrill message object requires these key properties:
+The Transactional API message object requires these key properties:
 
 - **html**: HTML content of the email
 - **text**: Plain text content (optional, but recommended)

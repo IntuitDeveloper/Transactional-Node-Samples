@@ -1,6 +1,6 @@
 # Send Email with Attachments
 
-This use case demonstrates how to attach files to emails sent via Mailchimp Transactional (Mandrill) and outlines limits and best practices.
+This use case demonstrates how to attach files to emails sent via the Transactional API and outlines limits and best practices.
 
 ## Basic Attachments Example
 
@@ -27,7 +27,7 @@ const attachments = [
   {
     type: 'text/plain',
     name: 'readme.txt',
-    content: Buffer.from('This is a demo text file created by the Mandrill Use Case File.\n\nGenerated at: ' + new Date().toISOString()).toString('base64')
+    content: Buffer.from('This is a demo text file created by the Transactional API Use Case File.\n\nGenerated at: ' + new Date().toISOString()).toString('base64')
   }
 ];
 
@@ -59,7 +59,7 @@ async function sendWithAttachments() {
       console.log('Unexpected result structure:', result);
     }
   } catch (error) {
-    console.error('Mandrill error:', error.message);
+    console.error('Transactional API error:', error.message);
     if (error.response) {
       console.error('Error response:', error.response.data);
     }

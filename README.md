@@ -1,17 +1,17 @@
-# Mandrill Node.js Use Cases
+# Transactional API Node.js Use Cases
 
 [![npm version](https://img.shields.io/npm/v/@mailchimp/mailchimp_transactional.svg)](https://www.npmjs.com/package/@mailchimp/mailchimp_transactional)
 [![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/example/mandrill-use-cases/blob/master/LICENSE)
 
-**Comprehensive Node.js examples for the Mandrill API**
+**Comprehensive Node.js examples for the Transactional API**
 
-This repository provides examples for specific Mandrill API use cases using Node.js. These examples demonstrate how to implement Mandrill email functionality effectively.
+This repository provides examples for specific Transactional API use cases using Node.js. These examples demonstrate how to implement Transactional API email functionality effectively.
 
 ## 📧 Documentation Examples
 
 All examples are available as documentation in the `/use-cases/` directory. Each use case includes complete code examples you can copy and run.
 
-If you need support using Mandrill, please check the [Mandrill API Documentation](https://mailchimp.com/developer/transactional/).
+If you need support using the Transactional API, please check the [Transactional API Documentation](https://mailchimp.com/developer/transactional/).
 
 ## Table of Contents
 
@@ -25,7 +25,7 @@ If you need support using Mandrill, please check the [Mandrill API Documentation
 ### Prerequisites
 
 - Node >= 10.0.0
-- A Mandrill API key
+- A Transactional API key
 
 ### Installation
 
@@ -43,7 +43,7 @@ If you need support using Mandrill, please check the [Mandrill API Documentation
 
 3. **Add your API key and email addresses to your .env file**
    ```bash
-   MANDRILL_API_KEY='your-mandrill-api-key-here'
+   MANDRILL_API_KEY='your-transactional-api-key-here'
    DEFAULT_FROM_EMAIL='your-email@example.com'
    DEFAULT_FROM_NAME='Your Name'
    DEFAULT_TO_EMAIL='recipient@example.com'
@@ -73,7 +73,7 @@ If you need support using Mandrill, please check the [Mandrill API Documentation
 
 ### Core Capabilities
 
-| Feature | Mandrill Implementation |
+| Feature | Transactional API Implementation |
 |---------|-------------------------|
 | **Library** | `@mailchimp/mailchimp_transactional` |
 | **Recipients** | `to: [{email: 'email@example.org', type: 'to'}]` |
@@ -96,15 +96,15 @@ If you need support using Mandrill, please check the [Mandrill API Documentation
 
 ### Common Issues
 
-- **Authentication Errors**: Verify your API key is correct and active
+- **Authentication Errors**: Verify your Transactional API key is correct and active
 - **Email Rejections**: Check email format and domain reputation
 - **Rate Limiting**: Implement delays between API calls for bulk sending
 - **Template Errors**: Verify template names and merge variable syntax
 
 ### Getting Help
 
-- Check the [Mandrill API Documentation](https://docs.mailchimp.com/api/mandrill/)
-- Contact [Mandrill Support](https://mailchimp.com/help/)
+- Check the [Transactional API Documentation](https://mailchimp.com/developer/transactional/)
+- Contact [Transactional API Support](https://mailchimp.com/help/)
 
 ## Best Practices
 
@@ -118,7 +118,7 @@ If you need support using Mandrill, please check the [Mandrill API Documentation
 
 ### Support
 
-For Mandrill API support, please contact [Mailchimp Support](https://mailchimp.com/help/).
+For Transactional API support, please contact [Mailchimp Support](https://mailchimp.com/help/).
 
 ## License
 

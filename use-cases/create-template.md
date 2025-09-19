@@ -1,6 +1,6 @@
 # Create Template
 
-Create a reusable email template in Mandrill.
+Create a reusable email template in the Transactional API.
 
 ```javascript
 require('dotenv').config();
