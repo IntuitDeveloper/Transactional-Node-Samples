@@ -24,6 +24,7 @@ Ready-to-run Node.js scripts demonstrating all Transactional API features.
    node create_template.js
    node email_with_template.js
    node kitchen_sink_email.js
+   node sms_single_recipient.js
    ```
 
 ## 📋 Available Scripts
@@ -36,6 +37,7 @@ Ready-to-run Node.js scripts demonstrating all Transactional API features.
 | `create_template.js` | Create a new email template in your Transactional API account |
 | `email_with_template.js` | Send email using a stored template |
 | `kitchen_sink_email.js` | Send comprehensive email with ALL Transactional API features |
+| `sms_single_recipient.js` | 📱 Send an SMS message to a single recipient |
 
 ## 🔧 Requirements
 
@@ -52,6 +54,13 @@ DEFAULT_FROM_EMAIL=test@example.org
 DEFAULT_FROM_NAME=Test Sender
 DEFAULT_TO_EMAIL=recipient@example.org
 DEFAULT_TO_NAME=Test Recipient
+
+# SMS settings (optional - for SMS functionality)
+SMS_TO_PHONE=+1234567890
+SMS_FROM_PHONE=+0987654321
+SMS_MESSAGE=Hello from Mandrill SMS!
+SMS_CONSENT_TYPE=onetime
+SMS_TRACK_CLICKS=true
 ```
 
 ## 🎯 Features Demonstrated
@@ -64,6 +73,7 @@ DEFAULT_TO_NAME=Test Recipient
 - ✅ Open and click tracking
 - ✅ Custom headers and metadata
 - ✅ All Transactional API features
+- 📱 SMS messaging
 
 ## 📚 Learn More
 

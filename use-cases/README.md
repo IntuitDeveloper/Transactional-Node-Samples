@@ -14,6 +14,10 @@ Essential Node.js examples for the Transactional API. Each use case includes com
 - [Send Email Using Template](./send-email-using-template.md)
 - [Kitchen Sink - All Features](./kitchen-sink.md)
 
+## 📱 SMS Messaging
+
+- [Send SMS to a Single Recipient](./send-sms-single-recipient.md)
+
 ---
 
 ## Quick Example
