@@ -1,7 +1,7 @@
 # Transactional API Node.js Use Cases
 
 [![npm version](https://img.shields.io/npm/v/@mailchimp/mailchimp_transactional.svg)](https://www.npmjs.com/package/@mailchimp/mailchimp_transactional)
-[![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/example/transactional-api-use-cases/blob/master/LICENSE)
+[![Apache 2.0 licensed](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://github.com/IntuitDeveloper/Transactional-Node-Samples/blob/main/LICENSE)
 
 **Comprehensive Node.js examples for the Transactional API**
 
@@ -122,4 +122,4 @@ For Transactional API support, please contact [Mailchimp Support](https://mailch
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details.

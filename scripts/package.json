@@ -8,7 +8,7 @@
   },
   "keywords": ["transactional", "email", "mailchimp", "api", "use-cases", "examples", "templates", "attachments", "merge-tags"],
   "author": "",
-  "license": "MIT",
+  "license": "Apache-2.0",
   "dependencies": {
     "@mailchimp/mailchimp_transactional": "^1.0.59",
     "dotenv": "^16.3.1"
